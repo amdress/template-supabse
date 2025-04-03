@@ -1,0 +1,7 @@
+{
+  "name": "ionic_supa_permissions",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
