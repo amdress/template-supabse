@@ -1,0 +1,25 @@
+.custom-input-container {
+    position: relative;
+    --border-radius: 8px; /* Esquinas redondeadas */
+    
+    .input-icon {
+      font-size: 20px;
+      color: var(--ion-color-primary);
+      position: absolute;
+      left: 10px; /* Ajusta la posición del icono */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+  
+    ion-input {
+      padding-left: 35px !important; /* Para que el texto no se solape con el icono */
+    }
+  
+    ion-button {
+      --padding-start: 0;
+      --padding-end: 0;
+      --border-radius: 50%;
+    }
+  }
+  

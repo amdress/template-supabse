@@ -1,0 +1,54 @@
+<ion-content class="ion-padding login-content">
+  <div class="content-flex">
+    <ion-card class="card-form">
+      <ion-card-header>
+        <ion-card-title class="title">Bienvenido 👋</ion-card-title>
+        <ion-card-subtitle>Inicia sesión para continuar</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <!-- ========= Email ==========-->
+          <app-custom-input
+          type="email"
+          label="Email"
+          placeholder="Tu correo electrónico"
+          icon="mail"
+          [control]="loginForm.controls.email"
+        ></app-custom-input>
+        <div class="validators" *ngIf="loginForm.controls.email.errors && loginForm.controls.email.dirty ">
+   
+          <div *ngIf="loginForm.controls.email.errors?.['required']">Ingresa tu Email</div>
+          <div *ngIf="loginForm.controls.email.errors?.['email']">Ingresa tu Email Valido</div>
+        </div>
+        
+      <!-- ========= Password ==========-->
+        <app-custom-input
+          type="password"
+          label="Contraseña"
+          placeholder="Tu contraseña"
+          icon="lock"
+          [control]="loginForm.controls.password"
+        ></app-custom-input>
+
+        <div class="validators" *ngIf="loginForm.controls.password.errors && loginForm.controls.password.dirty ">
+          <div *ngIf="loginForm.controls.password.errors?.['required']">Ingresa Tu contrasena</div>
+          <div *ngIf="loginForm.controls.password.errors?.['min']">Ingresa minimo 3</div>
+         
+      </div>
+
+      <div class="forgot-password ion-margin">
+        <span (click)="goToRegister()" style="cursor: pointer; color: blue; text-decoration: underline;">
+          ¿No tienes cuenta?
+        </span>
+      </div>
+
+          <ion-button expand="full" class="login-button  " type="submit" [disabled]="loginForm.invalid">Entrar</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+

@@ -1,0 +1,57 @@
+src/
+  ├── core/
+  │   ├── guards/
+  │   │   ├── auth.guard.ts
+  │   │   ├── no-auth.guard.ts
+  │   │   └── role.guard.ts
+  │   ├── models/
+  │   │   └── user.model.ts
+  │   ├── services/
+  │   │   ├── access-control.service.ts
+  │   │   ├── auth.service.ts
+  │   │   ├── role.service.ts
+  │   │   └── permission.service.ts
+  ├── features/
+  │   ├── auth/
+  │   │   ├── login.ts
+  │   │   └── register.ts
+  │   ├── dashboard/
+  │   │   ├── components/
+  │   │   │   ├── user-statistics/
+  │   │   │   └── role-management/
+  │   │   ├── services/
+  │   │   │   ├── dashboard.service.ts
+  │   │   ├── pages/
+  │   │   │   ├── superadmin-dashboard/
+  │   │   │   └── admin-dashboard/
+  ├── shared/
+  │   ├── components/
+  │   │   ├── custom-inputs/
+  │   │   └── header/
+  │   ├── utils/
+  │   │   └── utils.service.ts
+  ├── modules/
+  │   ├── blog/
+  │   │   ├── components/
+  │   │   │   ├── post-list/
+  │   │   │   └── post-detail/
+  │   │   ├── services/
+  │   │   │   ├── post.service.ts
+  │   │   ├── pages/
+  │   │   │   ├── public/
+  │   │   │   └── admin/
+  │   ├── restaurant/
+  │   │   ├── components/
+  │   │   │   ├── menu-item/
+  │   │   │   └── order-list/
+  │   │   ├── services/
+  │   │   │   ├── menu.service.ts
+  │   │   │   ├── order.service.ts
+  │   │   ├── pages/
+  │   │   │   ├── customer-view/
+  │   │   │   └── admin-view/
+  │   └── otroModulo/
+  ├── app-routing.module.ts
+  ├── app.component.ts
+  ├── app.component.html
+

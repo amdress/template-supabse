@@ -1,0 +1,127 @@
+<ion-content class="ion-padding login-content">
+  <div class="content-flex">
+    <ion-card class="card-registerForm">
+      <ion-card-header>
+        <ion-card-title class="title ion-text-center"
+          >Bienvenido 👋</ion-card-title
+        >
+        <ion-card-subtitle class="ion-text-center"
+          >Crea tu cuenta
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <!-- ========= Name ==========-->
+          <app-custom-input
+            autocomplete="name"
+            [control]="registerForm.controls.displayName"
+            type="text"
+            label="Nombre"
+            icon="person"
+          ></app-custom-input>
+
+          <div
+            class="validators"
+            *ngIf="registerForm.controls.displayName.errors && registerForm.controls.displayName.dirty "
+          >
+            <div *ngIf="registerForm.controls.displayName.errors?.['required']">
+              Ingresa tu nombre
+            </div>
+            <div
+              *ngIf="registerForm.controls.displayName.errors?.['minlength']"
+            >
+              Minimo 4 caracteres
+            </div>
+          </div>
+
+          <!-- ========= Email ==========-->
+          <app-custom-input
+            autocomplete="email"
+            [control]="registerForm.controls.email"
+            type="email"
+            label="Correo"
+            icon="mail"
+          ></app-custom-input>
+
+          <div
+            class="validators"
+            *ngIf="registerForm.controls.email.errors && registerForm.controls.email.dirty "
+          >
+            <div *ngIf="registerForm.controls.email.errors?.['required']">
+              Ingresa tu Email
+            </div>
+            <div *ngIf="registerForm.controls.email.errors?.['email']">
+              Ingresa tu Email Valido
+            </div>
+          </div>
+
+          <!-- ========= Password ==========-->
+          <app-custom-input
+            [control]="registerForm.controls.password"
+            type="password"
+            label="Contrasenha"
+            icon="lock"
+          ></app-custom-input>
+
+          <div
+            class="validators"
+            *ngIf="registerForm.controls.password.errors && registerForm.controls.password.dirty "
+          >
+            <div *ngIf="registerForm.controls.password.errors?.['required']">
+              Ingresa Tu contrasena
+            </div>
+            <div *ngIf="registerForm.controls.password.errors?.['min']">
+              Ingresa minimo 3
+            </div>
+          </div>
+
+          <!-- ========= confirmPassword ==========-->
+          <app-custom-input
+            [control]="registerForm.controls.confirmPassword"
+            type="password"
+            label="Repite la Contrasenha"
+            icon="lock"
+          ></app-custom-input>
+
+          <div
+            class="validators"
+            *ngIf="registerForm.controls.confirmPassword.errors && registerForm.controls.confirmPassword.dirty "
+          >
+            <div
+              *ngIf="registerForm.controls.confirmPassword.errors?.['required']"
+            >
+              Ingresa Tu contrasena
+            </div>
+            <div
+              *ngIf="registerForm.controls.confirmPassword.errors?.['noMatch']"
+            >
+              No coiciden
+            </div>
+          </div>
+
+          <ion-button
+            class="ion-margin-vertical"
+            spand="full"
+          >
+
+          <span class="material-symbols-outlined">
+            arrow_back
+            </span>
+            login
+      
+          </ion-button>
+          <ion-button
+            class="ion-margin-vertical"
+            [disabled]="registerForm.invalid"
+            type="submit"
+            spand="full"
+          >
+            Registrar
+        
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

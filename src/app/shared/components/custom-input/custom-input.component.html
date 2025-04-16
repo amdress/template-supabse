@@ -1,0 +1,30 @@
+<!-- =========== INPUT REGULAR ============ -->
+<ion-item class="custom-input-container ion-margin-vertical" lines="none">
+  <!-- Ícono del input (Material Icons) -->
+  <span *ngIf="icon" class="material-symbols-outlined input-icon" slot="start">
+    {{ icon }}
+  </span>
+
+  <ion-input
+    [label]="label"
+    label-placement="floating"
+    fill="outline"
+    [placeholder]="placeholder"
+
+    
+    debounce="500"
+    [autocomplete]="autocomplete"
+    [type]="type"
+    [formControl]="control">
+  </ion-input>
+
+  <!-- Botón para mostrar/ocultar contraseña -->
+  <ion-button *ngIf="isPassword" fill="clear" slot="end" (click)="showOrHidePassword()">
+    <span class="material-symbols-outlined">
+      {{ hide ? 'visibility_off' : 'visibility' }}
+    </span>
+  </ion-button>
+</ion-item>
+
+
+

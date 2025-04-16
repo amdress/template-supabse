@@ -1,0 +1,29 @@
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+  }
+
+  ion-icon {
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+}

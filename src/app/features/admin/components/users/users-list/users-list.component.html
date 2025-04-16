@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Panel SuperAdmin</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+  
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Usuarios Registrados</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+  
+        <ion-grid>
+          <ion-row class="header-row">
+            <ion-col size="3"><strong>Nombre</strong></ion-col>
+            <ion-col size="4"><strong>Email</strong></ion-col>
+            <ion-col size="3"><strong>Roles</strong></ion-col>
+            <ion-col size="2"><strong>Acciones</strong></ion-col>
+          </ion-row>
+  
+          <!-- Ejemplo de usuario -->
+          <ion-row *ngFor="let user of users" class="user-row">
+            <ion-col size="3">{{ user.name }}</ion-col>
+            <ion-col size="4">{{ user.email }}</ion-col>
+            <ion-col size="3">
+              <ion-chip color="medium" *ngFor="let role of user.roles">
+                {{ role }}
+              </ion-chip>
+            </ion-col>
+            <ion-col size="2">
+              <ion-button (click)="navigateTo('user-detail')" size="small" fill="clear" color="success">
+                 ver Usuario
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>
+  
