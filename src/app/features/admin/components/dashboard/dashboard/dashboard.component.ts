@@ -1,29 +1,33 @@
+import { AccessControlService } from './../../../../../core/services/access-control/access-control.service';
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { DashboardService } from '../../../services/dashboard.service';
+import { HasPermissionDirective } from 'src/app/core/services/access-control/directives/has-permission.directive';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  imports: [CommonModule, IonicModule, BaseChartDirective , ],
+  imports: [CommonModule, IonicModule, BaseChartDirective , HasPermissionDirective],
 })
 export class DashboardComponent implements OnInit  {
 
 
   constructor(
-    private dashboardSvc : DashboardService
+    private dashboardSvc : DashboardService,
+    private accessCtrl : AccessControlService
   ) { }
 
 
 
 
   async ngOnInit(): Promise<void> {
-
+    const permisos = await this.accessCtrl.getPermissions();
+    console.log('Permisos del rol:', permisos);
   }
 
 

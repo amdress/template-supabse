@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DbConnectionService } from '../db_supabase/db_conection.service';
-import { RoleService } from './role/role.service';
 import { RoleEntry, UserRole , Role} from './models/access-control.models';
 import { SessionService } from './session/session.service';
-import { PermissionService } from './permission/permission.service';
 import { catchError, from, map, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -15,6 +13,7 @@ export class AccessControlService {
 
   constructor(
     private connectionService: DbConnectionService,
+    private sessionSvc: SessionService,
     private router: Router,
   ) {}
 
@@ -196,6 +195,61 @@ redirectByRole(roles: string[]): void {
 
 // ================ PERMISSION ==============
 
+/**
+ * Devuelve una lista de permisos (por nombre) asociados a una lista de IDs de roles.
+ 
+ * @returns Lista de nombres de permisos únicos.
+ */
+
+async getPermissions(): Promise<string[]> {
+  const user = this.sessionSvc.getCurrentUser();
+
+  if (!user) {
+    console.warn('⚠️ No hay usuario en sesión.');
+    return [];
+  }
+
+  // 1. Obtener los roles del usuario (desde la tabla user_roles)
+  const { data: userRoles, error: rolesError } = await this.supabase
+    .from('user_roles')
+    .select('role_id')
+    .eq('user_id', user.id);
+
+  if (rolesError) {
+    console.error('❌ Error al obtener roles del usuario:', rolesError);
+    return [];
+  }
+
+  if (!userRoles?.length) {
+    console.warn('📭 El usuario no tiene roles asignados.');
+    return [];
+  }
+
+  const roleIds = userRoles.map((ur) => ur.role_id);
+
+  // 2. Obtener permisos a partir de los roles
+  const { data: rolePermissions, error: permError } = await this.supabase
+    .from('role_permissions')
+    .select('permissions(name)')
+    .in('role_id', roleIds);
+
+  if (permError) {
+    console.error('❌ Error al obtener permisos del rol:', permError);
+    return [];
+  }
+
+  if (!rolePermissions?.length) {
+    console.warn('📭 No se encontraron permisos para los roles del usuario.');
+    return [];
+  }
+
+  // 3. Mapear los nombres de permisos únicos
+  const permissions = rolePermissions
+    .map((entry: any) => entry.permissions?.name)
+    .filter((name: string | null | undefined): name is string => !!name);
+
+  return Array.from(new Set(permissions));
+}
 
 
 

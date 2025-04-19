@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Panel SuperAdmin</ion-title>
+   
   </ion-toolbar>
 </ion-header>
 
@@ -13,6 +14,10 @@
       <ion-card-subtitle>Resumen del sistema y sus módulos activos</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
+
+  <div *hasPermission="'view_user'">
+    Este contenido solo lo ve quien tenga el permiso `view_user`
+  </div>
 
   <!-- Estadísticas principales -->
   <ion-grid>
